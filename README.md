@@ -38,12 +38,14 @@ Pilot corridor: UAE/US → India.
 | [`contracts/`](contracts/) | [`ClaimEscrow.sol`](contracts/contracts/ClaimEscrow.sol), [`MockAUSD.sol`](contracts/contracts/MockAUSD.sol) (testnet only), [tests](contracts/test/ClaimEscrow.ts), [deploy script](contracts/scripts/deploy.ts) |
 | [`web/`](web/) | Next.js mobile-first PWA and API routes (relayer, faucet, FX, Aurora) |
 | [`indexer/`](indexer/) | Envio HyperIndex config, schema, handlers, tests |
+| [`android/`](android/) | Android app (Trusted Web Activity), opens in Android Studio; see [`android/README.md`](android/README.md) |
 | [`docs/PLAN.md`](docs/PLAN.md) | Plan, schedule, demo script, risks |
 
 ## Bounty mapping
 
 | Bounty | Where it lives |
 |---|---|
+| **Mobile app** | [`android/`](android/): a native Android app (Trusted Web Activity) for Google Play. It runs the web app in Chrome so Mera passkeys (WebAuthn PRF) work, and App Links open WhatsApp claim links in the app. |
 | **Consumer track** | The whole flow. The UI talks about "dollars", "account", and "link", never wallets, gas, or seed phrases. See [`web/src/app/page.tsx`](web/src/app/page.tsx) and [`web/src/app/claim/page.tsx`](web/src/app/claim/page.tsx). |
 | **Agora (cross-border)** | AUSD is the settlement asset, delivered in seconds on Monad. The send screen compares fees against Wise, Western Union, and a bank wire using a live mid-market rate ([`FeeComparison.tsx`](web/src/components/FeeComparison.tsx), [`fees.ts`](web/src/lib/fees.ts), [`api/fx`](web/src/app/api/fx/route.ts)). |
 | **Mera** | Both sender and recipient use passkey accounts via `@category-labs/mera`, derived per Mera's recipe (PRF → BIP-39 → `m/44'/60'/0'/0/0`). There's no seed phrase, extension, or custody backend, and only the credential ID is stored ([`web/src/lib/mera.ts`](web/src/lib/mera.ts), [`AccountProvider.tsx`](web/src/components/AccountProvider.tsx)). |
