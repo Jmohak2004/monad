@@ -1,8 +1,8 @@
 import { defineChain, type Address } from "viem";
-import { monad, monadTestnet } from "viem/chains";
+import { hardhat, monad, monadTestnet } from "viem/chains";
 
 const chainId = Number(process.env.NEXT_PUBLIC_CHAIN_ID ?? 10143);
-const baseChain = chainId === monad.id ? monad : monadTestnet;
+const baseChain = chainId === monad.id ? monad : chainId === hardhat.id ? { ...hardhat, testnet: true } : monadTestnet;
 
 export const rpcUrl = process.env.NEXT_PUBLIC_RPC_URL || baseChain.rpcUrls.default.http[0];
 

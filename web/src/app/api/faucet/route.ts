@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 import { isAddress, parseEther, type Address } from "viem";
-import { monadTestnet } from "viem/chains";
 import { tokenAbi } from "@/lib/abi";
 import { chain, tokenAddress, tokenIsMock } from "@/lib/config";
 import { publicClient, toUnits } from "@/lib/escrow";
@@ -13,7 +12,7 @@ const MIN_GAS_BALANCE = parseEther("0.05");
 // Testnet only: gives a demo sender mock AUSD to send, plus a little MON so their
 // passkey account can pay for its own approve + create transactions.
 export async function POST(req: Request) {
-  if (chain.id !== monadTestnet.id || !tokenIsMock || !tokenAddress) {
+  if (!chain.testnet || !tokenIsMock || !tokenAddress) {
     return NextResponse.json({ error: "Faucet is only available on testnet" }, { status: 404 });
   }
   const { address } = (await req.json().catch(() => ({}))) as { address?: string };
