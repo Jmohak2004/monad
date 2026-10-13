@@ -16,3 +16,4 @@ web/next-env.d.ts
 # envio
 indexer/generated/
 indexer/build/
+contracts/deployments/31337.json
