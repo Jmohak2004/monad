@@ -90,7 +90,9 @@ For mainnet (chain 143), set `AUSD_ADDRESS=0x00000000eFE302BEAA2b3e6e1b18d08D69a
 
 | Network | ClaimEscrow | Token |
 |---|---|---|
-| Monad testnet (10143) | _TBD_ | _TBD (MockAUSD)_ |
+| Monad testnet (10143) | [`0xA455e47354eb8Bb1Aa00edA192D40773892c2385`](https://testnet.monadvision.com/address/0xA455e47354eb8Bb1Aa00edA192D40773892c2385) | [`0xF1Fc08DcdCAa83953e54dd675F66c6C6EC6AfFd5`](https://testnet.monadvision.com/address/0xF1Fc08DcdCAa83953e54dd675F66c6C6EC6AfFd5) (MockAUSD, deploy block 70760893) |
+
+Demo: https://ghar-psi.vercel.app (passkeys are bound to this hostname).
 
 ## Known gaps / next steps
 

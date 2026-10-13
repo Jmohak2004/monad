@@ -69,8 +69,9 @@ Pilot corridor: **UAE → India** (AED → INR).
 
 ## Pre-submission checklist
 - [ ] Every bounty's required fields filled in
-- [ ] Deployed contract addresses in the README
-- [ ] Public repo with a clean README
-- [ ] Working demo link and 2-minute video
-- [ ] Each bounty mapped to a specific feature
+- [x] Deployed contract addresses in the README
+- [ ] Public repo with a clean README (local README is updated; push still required)
+- [x] Working demo link: https://ghar-psi.vercel.app
+- [ ] 2-minute video
+- [x] Each bounty mapped to a specific feature
 - [ ] Tested end-to-end on a fresh phone with a fresh passkey
