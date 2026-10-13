@@ -1,0 +1,31 @@
+enum TransferStatus {
+  PENDING
+  CLAIMED
+  REFUNDED
+}
+
+# One claim link. id is the link's claim-key address.
+type Transfer {
+  id: ID!
+  sender: String! @index
+  # Set once claimed.
+  recipient: String @index
+  amount: BigInt!
+  expiry: BigInt!
+  status: TransferStatus!
+  createdAt: BigInt! @index
+  createdTx: String!
+  # When it was claimed or refunded.
+  settledAt: BigInt
+  settledTx: String
+}
+
+# Per-address totals, for the profile/summary view.
+type Account {
+  id: ID!
+  sentCount: Int!
+  sentTotal: BigInt!
+  receivedCount: Int!
+  receivedTotal: BigInt!
+  refundedTotal: BigInt!
+}

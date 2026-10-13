@@ -1,0 +1,20 @@
+# yaml-language-server: $schema=./node_modules/envio/evm.schema.json
+# Local Hardhat node (npx hardhat node). Run with: npm run dev:local
+name: ghar-indexer
+description: Ghar claim-link transfers (ClaimEscrow), local Hardhat
+address_format: lowercase
+contracts:
+  - name: ClaimEscrow
+    events:
+      - event: "Created(address indexed claimKey, address indexed sender, uint256 amount, uint40 expiry)"
+      - event: "Claimed(address indexed claimKey, address indexed recipient, address indexed sender, uint256 amount)"
+      - event: "Refunded(address indexed claimKey, address indexed sender, uint256 amount)"
+chains:
+  - id: 31337
+    start_block: 0
+    rpc:
+      - url: ${ENVIO_RPC_URL:-http://127.0.0.1:8545}
+        for: sync
+    contracts:
+      - name: ClaimEscrow
+        address: "${ENVIO_ESCROW_ADDRESS:-0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512}"

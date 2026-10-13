@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=./node_modules/envio/evm.schema.json
+name: ghar-indexer
+description: Ghar claim-link transfers (ClaimEscrow) on Monad
+# Lowercase addresses so the app can query by `owner.toLowerCase()`.
+address_format: lowercase
+contracts:
+  - name: ClaimEscrow
+    events:
+      - event: "Created(address indexed claimKey, address indexed sender, uint256 amount, uint40 expiry)"
+      - event: "Claimed(address indexed claimKey, address indexed recipient, address indexed sender, uint256 amount)"
+      - event: "Refunded(address indexed claimKey, address indexed sender, uint256 amount)"
+chains:
+  - id: 10143 # Monad Testnet (HyperSync: https://10143.hypersync.xyz)
+    # Set to the escrowDeployBlock in contracts/deployments/10143.json for a faster sync.
+    start_block: 0
+    contracts:
+      - name: ClaimEscrow
+        address: "${ENVIO_ESCROW_ADDRESS}"

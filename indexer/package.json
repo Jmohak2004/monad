@@ -1,0 +1,25 @@
+{
+  "name": "ghar-indexer",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "codegen": "envio codegen",
+    "dev": "envio dev",
+    "dev:local": "envio dev --config config.local.yaml",
+    "start": "envio start",
+    "test": "ENVIO_ESCROW_ADDRESS=${ENVIO_ESCROW_ADDRESS:-0x0000000000000000000000000000000000000001} vitest run --test-timeout=20000",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "24.12.2",
+    "typescript": "6.0.3",
+    "vitest": "4.1.0"
+  },
+  "dependencies": {
+    "envio": "3.14.0"
+  },
+  "engines": {
+    "node": ">=22.15.0"
+  }
+}
