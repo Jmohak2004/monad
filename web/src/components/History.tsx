@@ -57,7 +57,7 @@ export function History({ owner, refreshKey = 0 }: { owner: Address; refreshKey?
   return (
     <section className="card flex flex-col gap-3">
       <div className="flex items-baseline justify-between">
-        <h2 className="font-semibold">Activity</h2>
+        <h2 className="display text-3xl">Activity</h2>
         <span className="text-xs text-muted">{source === "envio" ? "Live" : "On this device"}</span>
       </div>
       {items == null ? (

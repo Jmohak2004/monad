@@ -1,0 +1,258 @@
+[
+  {
+    "name": "open",
+    "fails": [],
+    "warns": [],
+    "facts": {
+      "fonts": {
+        "SF Pro": 7
+      },
+      "sizes": [
+        44,
+        22,
+        20,
+        17,
+        16,
+        13
+      ],
+      "weights": [
+        "400",
+        "450",
+        "650",
+        "760"
+      ],
+      "leftEdges": 2,
+      "accentHues": [
+        240
+      ],
+      "cards": 0
+    }
+  },
+  {
+    "name": "send",
+    "fails": [],
+    "warns": [],
+    "facts": {
+      "fonts": {
+        "SF Pro": 13
+      },
+      "sizes": [
+        68,
+        17,
+        16,
+        13
+      ],
+      "weights": [
+        "400",
+        "450",
+        "650",
+        "760"
+      ],
+      "leftEdges": 1,
+      "accentHues": [
+        240
+      ],
+      "cards": 0
+    }
+  },
+  {
+    "name": "link",
+    "fails": [],
+    "warns": [],
+    "facts": {
+      "fonts": {
+        "SF Pro": 7
+      },
+      "sizes": [
+        44,
+        17,
+        16,
+        13
+      ],
+      "weights": [
+        "400",
+        "450",
+        "650",
+        "760"
+      ],
+      "leftEdges": 1,
+      "accentHues": [
+        240
+      ],
+      "cards": 0
+    }
+  },
+  {
+    "name": "claim",
+    "fails": [],
+    "warns": [],
+    "facts": {
+      "fonts": {
+        "SF Pro": 7
+      },
+      "sizes": [
+        68,
+        22,
+        20,
+        17,
+        16,
+        13
+      ],
+      "weights": [
+        "400",
+        "450",
+        "650",
+        "760"
+      ],
+      "leftEdges": 2,
+      "accentHues": [
+        240
+      ],
+      "cards": 0
+    }
+  },
+  {
+    "name": "claimed",
+    "fails": [],
+    "warns": [],
+    "facts": {
+      "fonts": {
+        "SF Pro": 4
+      },
+      "sizes": [
+        68,
+        17,
+        16,
+        13
+      ],
+      "weights": [
+        "400",
+        "450",
+        "650",
+        "760"
+      ],
+      "leftEdges": 1,
+      "accentHues": [
+        240
+      ],
+      "cards": 0
+    }
+  },
+  {
+    "name": "broken",
+    "fails": [],
+    "warns": [],
+    "facts": {
+      "fonts": {
+        "SF Pro": 3
+      },
+      "sizes": [
+        44,
+        17,
+        16
+      ],
+      "weights": [
+        "400",
+        "650",
+        "760"
+      ],
+      "leftEdges": 1,
+      "accentHues": [],
+      "cards": 0
+    }
+  },
+  {
+    "name": "used",
+    "fails": [],
+    "warns": [],
+    "facts": {
+      "fonts": {
+        "SF Pro": 3
+      },
+      "sizes": [
+        44,
+        17,
+        16
+      ],
+      "weights": [
+        "400",
+        "650",
+        "760"
+      ],
+      "leftEdges": 1,
+      "accentHues": [],
+      "cards": 0
+    }
+  },
+  {
+    "name": "history-pending",
+    "fails": [],
+    "warns": [],
+    "facts": {
+      "fonts": {
+        "SF Pro": 4
+      },
+      "sizes": [
+        44,
+        16,
+        13
+      ],
+      "weights": [
+        "400",
+        "760"
+      ],
+      "leftEdges": 1,
+      "accentHues": [],
+      "cards": 0
+    }
+  },
+  {
+    "name": "history-claimed",
+    "fails": [],
+    "warns": [],
+    "facts": {
+      "fonts": {
+        "SF Pro": 4
+      },
+      "sizes": [
+        44,
+        16,
+        13
+      ],
+      "weights": [
+        "400",
+        "760"
+      ],
+      "leftEdges": 1,
+      "accentHues": [],
+      "cards": 0
+    }
+  },
+  {
+    "name": "send-dark",
+    "fails": [],
+    "warns": [],
+    "facts": {
+      "fonts": {
+        "SF Pro": 11
+      },
+      "sizes": [
+        68,
+        17,
+        16,
+        13
+      ],
+      "weights": [
+        "400",
+        "450",
+        "650",
+        "760"
+      ],
+      "leftEdges": 1,
+      "accentHues": [
+        240
+      ],
+      "cards": 0
+    }
+  }
+]

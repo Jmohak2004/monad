@@ -17,7 +17,7 @@ export default function AddMoney() {
           Back
         </Link>
       </Header>
-      <h1 className="text-2xl font-semibold">Add money</h1>
+      <h1 className="display text-4xl">Add money</h1>
       {!account ? (
         <AuthCard title="Sign in first" subtitle="Add money to your Ghar balance." />
       ) : (
@@ -105,7 +105,7 @@ function FromAnotherChain({ address }: { address: string }) {
         </p>
       </div>
       {!info.enabled ? (
-        <p className="rounded-xl bg-warn-soft p-3 text-sm text-warn">
+        <p className="bg-warn-soft p-3 text-sm text-warn">
           Not available yet: set <code>AURORA_API_KEY</code> on the server.
         </p>
       ) : (
@@ -152,7 +152,7 @@ function FromAnotherChain({ address }: { address: string }) {
             <div className="flex flex-col gap-2">
               <p className="text-sm text-muted">Send to this {sourceName} address:</p>
               <button
-                className="break-all rounded-xl border border-line bg-bg p-3 text-left font-mono text-sm"
+                className="break-all border border-line bg-bg p-3 text-left font-mono text-sm"
                 onClick={async () => {
                   await navigator.clipboard.writeText(deposit.address);
                   setCopied(true);
@@ -176,7 +176,7 @@ function FromAnotherChain({ address }: { address: string }) {
               those deposits won&apos;t show in the balance above.
             </p>
           )}
-          {error && <p className="rounded-xl bg-warn-soft p-3 text-sm text-warn">{error}</p>}
+          {error && <p className="bg-warn-soft p-3 text-sm text-warn">{error}</p>}
         </>
       )}
     </section>
@@ -193,7 +193,7 @@ function DepositProgress({
   if (!status) return <p className="text-sm text-muted">Waiting for your deposit…</p>;
   if (status.success.length)
     return (
-      <p className="rounded-xl bg-accent-soft p-3 text-sm font-medium text-accent">
+      <p className="bg-accent-soft p-3 text-sm font-medium text-accent">
         Arrived: {fmt(status.success[0])} added to your balance.
       </p>
     );

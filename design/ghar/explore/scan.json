@@ -1,0 +1,91 @@
+[
+  {
+    "name": "aerogramme",
+    "fails": [],
+    "warns": [
+      "Text inside the system's safe areas: \"Dubai · to Amma in Mumba\" (status bar)"
+    ],
+    "facts": {
+      "fonts": {
+        "SF Pro": 4,
+        "New York": 7
+      },
+      "sizes": [
+        72,
+        17,
+        16,
+        15,
+        13
+      ],
+      "weights": [
+        "400",
+        "650",
+        "700"
+      ],
+      "leftEdges": 2,
+      "accentHues": [
+        0
+      ],
+      "cards": 0
+    }
+  },
+  {
+    "name": "kitchen",
+    "fails": [],
+    "warns": [
+      "Text inside the system's safe areas: \"After dinner · Mumbai is\" (status bar)"
+    ],
+    "facts": {
+      "fonts": {
+        "SF Pro Rounded": 11
+      },
+      "sizes": [
+        72,
+        17,
+        16,
+        15,
+        13
+      ],
+      "weights": [
+        "400",
+        "650",
+        "700"
+      ],
+      "leftEdges": 2,
+      "accentHues": [
+        24
+      ],
+      "cards": 0
+    }
+  },
+  {
+    "name": "door",
+    "fails": [],
+    "warns": [
+      "Text inside the system's safe areas: \"Knock for Amma · Mumbai\" (status bar)"
+    ],
+    "facts": {
+      "fonts": {
+        "SF Pro": 11
+      },
+      "sizes": [
+        72,
+        17,
+        16,
+        15,
+        13
+      ],
+      "weights": [
+        "400",
+        "450",
+        "700",
+        "760"
+      ],
+      "leftEdges": 2,
+      "accentHues": [
+        240
+      ],
+      "cards": 0
+    }
+  }
+]

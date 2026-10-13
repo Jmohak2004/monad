@@ -1,32 +1,23 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #f8f4ec;
-  --surface: #ffffff;
-  --ink: #1d1a16;
-  --muted: #6b645a;
-  --line: #e7dfd1;
-  --accent: #0f6b4f;
-  --accent-ink: #ffffff;
-  --accent-soft: #e3f1ea;
-  --warn: #9a5b00;
-  --warn-soft: #fbf0dc;
-  --danger: #b42318;
+  --bg: #1436c8;
+  --surface: transparent;
+  --ink: #f4f6ff;
+  --muted: #d5defa;
+  --line: rgba(255, 255, 255, 0.35);
+  --accent: #f4f6ff;
+  --accent-ink: #1436c8;
+  --accent-soft: rgba(255, 255, 255, 0.12);
+  --warn: #ffe7a3;
+  --warn-soft: rgba(0, 0, 0, 0.16);
+  --danger: #ffd0c8;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #12110f;
-    --surface: #1c1a17;
-    --ink: #f3efe8;
-    --muted: #a59d90;
-    --line: #2f2b26;
-    --accent: #3cc48f;
-    --accent-ink: #0b1d15;
-    --accent-soft: #15322580;
-    --warn: #f0b45a;
-    --warn-soft: #3a2a1166;
-    --danger: #f97066;
+    --bg: #0c1f78;
+    --accent-ink: #0c1f78;
   }
 }
 
@@ -42,8 +33,8 @@
   --color-warn: var(--warn);
   --color-warn-soft: var(--warn-soft);
   --color-danger: var(--danger);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-roboto), system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 }
 
 html,
@@ -53,15 +44,23 @@ body {
 }
 
 body {
-  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-family: var(--font-roboto), system-ui, sans-serif;
   -webkit-tap-highlight-color: transparent;
 }
 
+.display {
+  font-stretch: 140%;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 0.92;
+}
+
 .card {
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 1.25rem;
-  padding: 1.25rem;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  border-top: 0.5px solid var(--line);
+  padding: 1.25rem 0 0;
 }
 
 .btn {
@@ -71,8 +70,9 @@ body {
   gap: 0.5rem;
   min-height: 3rem;
   padding: 0 1.25rem;
-  border-radius: 999px;
-  font-weight: 600;
+  border-radius: 0;
+  font-stretch: 125%;
+  font-weight: 700;
   transition: opacity 0.15s, transform 0.05s;
 }
 .btn:active {
@@ -85,24 +85,35 @@ body {
 .btn-primary {
   background: var(--accent);
   color: var(--accent-ink);
+  border: 1.5px solid var(--accent);
 }
 .btn-secondary {
   background: transparent;
   color: var(--ink);
-  border: 1px solid var(--line);
+  border: 1.5px solid var(--ink);
 }
 
 .input {
   width: 100%;
   min-height: 3rem;
-  padding: 0 1rem;
-  border-radius: 0.875rem;
-  border: 1px solid var(--line);
-  background: var(--surface);
+  padding: 0.5rem 0;
+  border: 0;
+  border-bottom: 1.5px solid var(--ink);
+  border-radius: 0;
+  background: transparent;
   color: var(--ink);
-  font-size: 1rem;
+  font-size: 1.375rem;
 }
 .input:focus {
-  outline: 2px solid var(--accent);
-  outline-offset: 1px;
+  outline: none;
+  border-bottom-color: var(--ink);
+}
+
+.input::placeholder {
+  color: rgba(244, 246, 255, 0.45);
+}
+
+select.input option {
+  color: #1436c8;
+  background: #f4f6ff;
 }

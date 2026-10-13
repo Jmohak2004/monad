@@ -57,7 +57,7 @@ export function AuthCard({ title, subtitle, cta = "Create account" }: { title: s
         Uses your phone&apos;s Face ID, fingerprint, or screen lock. There&apos;s no password or recovery phrase, and
         nothing is stored on our servers.
       </p>
-      {error && <p className="rounded-xl bg-warn-soft p-3 text-sm text-warn">{error}</p>}
+      {error && <p className="bg-warn-soft p-3 text-sm text-warn">{error}</p>}
     </section>
   );
 }

@@ -35,7 +35,7 @@ export function FeeComparison({ amountUsd }: { amountUsd: number }) {
 
   return (
     <div className="flex flex-col gap-2">
-      <div className="overflow-hidden rounded-2xl border border-line">
+      <div className="overflow-hidden border border-line">
         <table className="w-full text-sm">
           <thead className="bg-bg text-left text-xs text-muted">
             <tr>

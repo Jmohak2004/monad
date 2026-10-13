@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="file:///Users/shubhamindulkar/.claude/skills/app-designer/assets/device.css" />
+<style>
+  .door { background: #1436c8; color: #f4f6ff; }
+  .screen[data-theme="dark"].door { background: #0c1f78; color: #f4f6ff; }
+  .pad {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: calc(var(--safe-top) + 12px) 22px calc(var(--safe-bottom) + 8px);
+  }
+  .kicker { font-size: 13px; line-height: 1.3; color: #d5defa; font-weight: 450; }
+  .display {
+    font-stretch: 140%;
+    font-weight: 760;
+    letter-spacing: -2.4px;
+    line-height: 0.92;
+    margin: 10px 0 0;
+  }
+  .hero { font-size: 68px; }
+  .title { font-size: 44px; letter-spacing: -1.4px; }
+  .sub { margin-top: 12px; font-size: 17px; line-height: 1.35; color: #d5defa; max-width: 22em; }
+  .chips { display: flex; gap: 8px; margin-top: 18px; }
+  .chip, .go, .ghost {
+    min-height: 48px;
+    border: 1.5px solid #f4f6ff;
+    background: transparent;
+    color: #f4f6ff;
+    font: inherit;
+    font-stretch: 125%;
+    font-weight: 650;
+    font-size: 16px;
+    border-radius: 0;
+    padding: 0 14px;
+  }
+  .chip { flex: 1; }
+  .go {
+    margin-top: 16px;
+    background: #f4f6ff;
+    color: #1436c8;
+    border-color: #f4f6ff;
+    width: 100%;
+  }
+  .screen[data-theme="dark"] .go { color: #0c1f78; }
+  .ghost { width: 100%; margin-top: 8px; }
+  .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    padding: 12px 0;
+    border-top: 0.5px solid rgba(255,255,255,.35);
+    font-size: 16px;
+  }
+  .row span:first-child { color: #d5defa; }
+  .field {
+    margin-top: 22px;
+    min-height: 52px;
+    border: 0;
+    border-bottom: 1.5px solid #f4f6ff;
+    background: transparent;
+    color: #f4f6ff;
+    font: inherit;
+    font-size: 22px;
+    padding: 8px 0;
+  }
+  .note { margin-top: 14px; font-size: 13px; line-height: 1.4; color: #d5defa; }
+  .grow { margin-top: auto; }
+  .mark {
+    width: 18px; height: 28px;
+    border: 1.5px solid #f4f6ff;
+    position: relative;
+    display: inline-block;
+  }
+  .mark::after {
+    content: "";
+    position: absolute;
+    right: 3px; top: 12px;
+    width: 3px; height: 3px;
+    background: #f4f6ff;
+  }
+  .word { font-stretch: 140%; font-weight: 760; font-size: 20px; letter-spacing: -0.4px; }
+  .top { display: flex; align-items: center; gap: 10px; }
+</style>
+</head>
+<body>
+
+<section class="screen door" data-name="open" data-time="18:52" data-chrome="light">
+  <div class="pad">
+    <div class="top"><i class="mark"></i><span class="word">Ghar</span></div>
+    <h1 class="display title">Send money home</h1>
+    <p class="sub">Share a link on WhatsApp. Your family taps it and the money is theirs.</p>
+    <p class="kicker" style="margin-top:28px">Your first name</p>
+    <div class="field">Priya</div>
+    <button class="go">Create account</button>
+    <p class="note">Uses your phone’s Face ID, fingerprint, or screen lock. The prompt is the phone’s.</p>
+  </div>
+</section>
+
+<section class="screen door" data-name="send" data-time="18:52" data-chrome="light">
+  <div class="pad">
+    <p class="kicker">Dubai · to Amma in Mumbai</p>
+    <p class="display hero">$200</p>
+    <p class="sub">About ₹16,740. Ghar keeps none of it.</p>
+    <div class="chips">
+      <button class="chip">$50</button>
+      <button class="chip">$100</button>
+      <button class="chip">$200</button>
+    </div>
+    <div class="row" style="margin-top:22px"><span>Wise would keep</span><span>$4.20</span></div>
+    <div class="row"><span>You have</span><span>$250 · Add money</span></div>
+    <button class="go">Send $200</button>
+    <div class="row"><span>Last week · received</span><span>+$80</span></div>
+  </div>
+</section>
+
+<section class="screen door" data-name="link" data-time="18:54" data-chrome="light">
+  <div class="pad">
+    <p class="kicker">For Amma</p>
+    <h1 class="display title">$200 is on its way</h1>
+    <p class="sub">Send this link to the person you’re paying. About ₹16,740.</p>
+    <div class="grow"></div>
+    <button class="go">Send on WhatsApp</button>
+    <button class="ghost">Copy link</button>
+    <button class="ghost">Send more</button>
+    <p class="note">Anyone with this link can receive the money, so only send it to her. Unopened after 7 days, you can take it back.</p>
+  </div>
+</section>
+
+<section class="screen door" data-name="claim" data-time="19:06" data-chrome="light">
+  <div class="pad">
+    <div class="top"><i class="mark"></i><span class="word">Ghar</span></div>
+    <p class="kicker" style="margin-top:28px">You received</p>
+    <p class="display hero">$200</p>
+    <p class="sub">From Priya in Dubai. About ₹16,740, and nothing taken out.</p>
+    <p class="kicker" style="margin-top:28px">Your first name</p>
+    <div class="field">Amma</div>
+    <button class="go">Create account</button>
+  </div>
+</section>
+
+<section class="screen door" data-name="claimed" data-time="19:07" data-chrome="light">
+  <div class="pad">
+    <p class="kicker">It’s yours</p>
+    <p class="display hero">$200</p>
+    <p class="sub">In your Ghar balance. No fees were taken.</p>
+    <div class="grow"></div>
+    <button class="go">See my balance</button>
+  </div>
+</section>
+
+<section class="screen door" data-name="broken" data-time="19:06" data-chrome="light">
+  <div class="pad">
+    <h1 class="display title">This link doesn’t work</h1>
+    <p class="sub">It may be incomplete. Ask Priya to share it again.</p>
+    <div class="grow"></div>
+    <button class="ghost">Go to Ghar</button>
+  </div>
+</section>
+
+<section class="screen door" data-name="used" data-time="19:12" data-chrome="light">
+  <div class="pad">
+    <h1 class="display title">Already received</h1>
+    <p class="sub">This link has already been used.</p>
+    <div class="grow"></div>
+    <button class="ghost">Go to Ghar</button>
+  </div>
+</section>
+
+<section class="screen door" data-name="history-pending" data-time="18:55" data-chrome="light">
+  <div class="pad">
+    <h1 class="display title">Activity</h1>
+    <div class="row" style="margin-top:28px"><span>Sent · waiting to be opened</span><span>−$200</span></div>
+    <p class="note">To Amma · today · copy link</p>
+  </div>
+</section>
+
+<section class="screen door" data-name="history-claimed" data-time="19:08" data-chrome="light">
+  <div class="pad">
+    <h1 class="display title">Activity</h1>
+    <div class="row" style="margin-top:28px"><span>Sent · received</span><span>−$200</span></div>
+    <p class="note">Amma opened it.</p>
+  </div>
+</section>
+
+<section class="screen door" data-name="send-dark" data-time="21:14" data-theme="dark">
+  <div class="pad">
+    <p class="kicker">Dubai · to Amma in Mumbai</p>
+    <p class="display hero">$200</p>
+    <p class="sub">About ₹16,740. Ghar keeps none of it.</p>
+    <div class="chips">
+      <button class="chip">$50</button>
+      <button class="chip">$100</button>
+      <button class="chip">$200</button>
+    </div>
+    <div class="row" style="margin-top:22px"><span>Wise would keep</span><span>$4.20</span></div>
+    <div class="row"><span>You have</span><span>$250 · Add money</span></div>
+    <button class="go">Send $200</button>
+  </div>
+</section>
+
+<section class="app-icon" data-name="icon" style="background:#1436c8">
+  <div style="position:absolute;left:122px;top:78px;width:100px;height:188px;border:8px solid #f4f6ff"></div>
+  <div style="position:absolute;left:196px;top:164px;width:14px;height:14px;background:#f4f6ff"></div>
+</section>
+
+<script src="file:///Users/shubhamindulkar/.claude/skills/app-designer/assets/device.js"></script>
+</body>
+</html>

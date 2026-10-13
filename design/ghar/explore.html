@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="file:///Users/shubhamindulkar/.claude/skills/app-designer/assets/device.css" />
+<style>
+  .pad { padding: 16px 22px 28px; display: flex; flex-direction: column; min-height: 100%; }
+  .meta { font-size: 13px; line-height: 1.3; }
+  .hero { font-size: 72px; line-height: 0.9; letter-spacing: -2.5px; font-weight: 700; margin: 18px 0 0; }
+  .row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 10px 0; }
+  .chips { display: flex; gap: 8px; margin-top: 14px; }
+  .chip { min-height: 44px; padding: 0 16px; border: 0; font: inherit; font-size: 15px; }
+  .go { margin-top: auto; min-height: 52px; border: 0; font: inherit; font-size: 17px; font-weight: 650; }
+  button { cursor: pointer; }
+
+  /* 1 aerogramme */
+  .aero { background: #e7e2d6; color: #1c1915; font-family: var(--ny); }
+  .aero .border {
+    margin: 10px; min-height: calc(100% - 20px);
+    background:
+      repeating-linear-gradient(90deg, #c4372a 0 10px, #e7e2d6 10px 18px) top / 100% 8px no-repeat,
+      repeating-linear-gradient(90deg, #c4372a 0 10px, #e7e2d6 10px 18px) bottom / 100% 8px no-repeat,
+      repeating-linear-gradient(0deg, #c4372a 0 10px, #e7e2d6 10px 18px) left / 8px 100% no-repeat,
+      repeating-linear-gradient(0deg, #c4372a 0 10px, #e7e2d6 10px 18px) right / 8px 100% no-repeat,
+      #f4f0e6;
+    display: flex; flex-direction: column;
+  }
+  .aero .meta { font-family: var(--sf); color: #5c564c; }
+  .aero .rule { border-top: 0.5px solid #c9c1b2; }
+  .aero .chip { background: transparent; border-bottom: 1.5px solid #1c1915; border-radius: 0; color: inherit; }
+  .aero .go { background: #c4372a; color: #fff8f2; border-radius: 0; }
+
+  /* 2 night kitchen */
+  .kitchen { background: #16120f; color: #f3eadf; font-family: var(--sf-rounded); }
+  .kitchen .lamp { height: 8px; background: #e39a3a; margin: 0 -22px 8px; }
+  .kitchen .meta { color: #b7a898; }
+  .kitchen .rule { border-top: 0.5px solid #3a322b; }
+  .kitchen .chip { background: #2a241f; color: #f3eadf; border-radius: 999px; }
+  .kitchen .go { background: #e39a3a; color: #1a120c; border-radius: 16px; }
+
+  /* 3 front door */
+  .door { background: #1436c8; color: #f4f6ff; font-family: var(--sf); }
+  .door .hero { font-stretch: 140%; font-weight: 760; letter-spacing: -3px; }
+  .door .meta { color: #d5defa; font-weight: 450; }
+  .door .rule { border-top: 0.5px solid rgba(255,255,255,.35); }
+  .door .chip { background: transparent; color: #f4f6ff; border: 1.5px solid #f4f6ff; border-radius: 0; font-stretch: 125%; }
+  .door .go { background: #f4f6ff; color: #1436c8; border-radius: 0; font-stretch: 125%; font-weight: 700; }
+</style>
+</head>
+<body>
+
+<section class="screen aero" data-name="aerogramme" data-time="18:52">
+  <div class="border">
+    <div class="pad">
+      <p class="meta">Dubai · to Amma in Mumbai</p>
+      <p class="hero">$200</p>
+      <p class="meta" style="margin-top:8px">About ₹16,740. Ghar keeps none of it.</p>
+      <div class="chips">
+        <button class="chip">$50</button>
+        <button class="chip">$100</button>
+        <button class="chip">$200</button>
+      </div>
+      <div class="row rule" style="margin-top:22px">
+        <span class="meta">Wise would keep</span>
+        <span>$4.20</span>
+      </div>
+      <div class="row rule">
+        <span class="meta">You have</span>
+        <span>$250</span>
+      </div>
+      <button class="go">Send $200</button>
+    </div>
+  </div>
+</section>
+
+<section class="screen kitchen" data-name="kitchen" data-time="21:14" data-chrome="light">
+  <div class="pad">
+    <div class="lamp"></div>
+    <p class="meta">After dinner · Mumbai is asleep</p>
+    <p class="hero">$200</p>
+    <p class="meta" style="margin-top:8px">For Amma. About ₹16,740, and none kept back.</p>
+    <div class="chips">
+      <button class="chip">$50</button>
+      <button class="chip">$100</button>
+      <button class="chip">$200</button>
+    </div>
+    <div class="row rule" style="margin-top:28px">
+      <span class="meta">Wise would keep</span>
+      <span>$4.20</span>
+    </div>
+    <div class="row rule">
+      <span class="meta">Still in the tin</span>
+      <span>$250</span>
+    </div>
+    <button class="go">Send $200</button>
+  </div>
+</section>
+
+<section class="screen door" data-name="door" data-time="18:52" data-chrome="light">
+  <div class="pad">
+    <p class="meta">Knock for Amma · Mumbai</p>
+    <p class="hero">$200</p>
+    <p class="meta" style="margin-top:10px">About ₹16,740. Nothing held back.</p>
+    <div class="chips">
+      <button class="chip">$50</button>
+      <button class="chip">$100</button>
+      <button class="chip">$200</button>
+    </div>
+    <div class="row rule" style="margin-top:28px">
+      <span class="meta">Wise would keep</span>
+      <span>$4.20</span>
+    </div>
+    <div class="row rule">
+      <span class="meta">You have</span>
+      <span>$250</span>
+    </div>
+    <button class="go">Send $200</button>
+  </div>
+</section>
+
+<script src="file:///Users/shubhamindulkar/.claude/skills/app-designer/assets/device.js"></script>
+</body>
+</html>

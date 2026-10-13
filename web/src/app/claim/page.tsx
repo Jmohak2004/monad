@@ -101,12 +101,12 @@ export default function ClaimPage() {
 
       {view.kind === "claimed" &&
         (view.mine ? (
-          <section className="card flex flex-col items-center gap-3 py-8 text-center">
-            <div className="flex h-14 w-14 items-center justify-center rounded-full bg-accent text-2xl text-accent-ink">
+          <section className="card flex flex-col gap-3 py-8">
+            <div className="flex h-14 w-14 items-center justify-center bg-accent text-2xl text-accent-ink">
               ✓
             </div>
             <p className="text-sm text-muted">You received</p>
-            <p className="text-5xl font-semibold tabular-nums tracking-tight">{formatUsd(view.amount)}</p>
+            <p className="display text-6xl tabular-nums">{formatUsd(view.amount)}</p>
             <p className="text-sm text-muted">It&apos;s in your Ghar balance now. No fees were taken.</p>
             <Link href="/" className="btn btn-primary mt-2 w-full">
               See my balance
@@ -118,9 +118,9 @@ export default function ClaimPage() {
 
       {(view.kind === "ready" || view.kind === "claiming" || view.kind === "error") && (
         <>
-          <section className="py-6 text-center">
+          <section className="py-6">
             <p className="text-muted">Someone sent you</p>
-            <p className="text-6xl font-semibold tabular-nums tracking-tight">{formatUsd(view.transfer.amount)}</p>
+            <p className="display mt-2 text-6xl tabular-nums">{formatUsd(view.transfer.amount)}</p>
           </section>
           {view.kind === "claiming" ? (
             <p className="card text-center text-muted">Adding it to your balance…</p>
@@ -135,7 +135,7 @@ export default function ClaimPage() {
               cta="Create account & receive"
             />
           )}
-          {view.kind === "error" && <p className="rounded-xl bg-warn-soft p-3 text-sm text-warn">{view.message}</p>}
+          {view.kind === "error" && <p className="bg-warn-soft p-3 text-sm text-warn">{view.message}</p>}
         </>
       )}
     </>
@@ -144,8 +144,8 @@ export default function ClaimPage() {
 
 function Message({ title, body }: { title: string; body: string }) {
   return (
-    <section className="card flex flex-col gap-2 py-8 text-center">
-      <h1 className="text-xl font-semibold">{title}</h1>
+    <section className="card flex flex-col gap-2 py-8">
+      <h1 className="display text-4xl">{title}</h1>
       <p className="text-sm text-muted">{body}</p>
       <Link href="/" className="btn btn-secondary mt-3">
         Go to Ghar

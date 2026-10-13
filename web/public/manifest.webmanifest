@@ -3,7 +3,7 @@
   "short_name": "Ghar",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#f8f4ec",
-  "theme_color": "#0f6b4f",
+  "background_color": "#1436c8",
+  "theme_color": "#1436c8",
   "icons": [{ "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }]
 }

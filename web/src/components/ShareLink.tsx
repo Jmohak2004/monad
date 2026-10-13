@@ -36,7 +36,7 @@ export function ShareLink({ link, amountLabel }: { link: string; amountLabel: st
           More…
         </button>
       </div>
-      <p className="rounded-xl bg-warn-soft p-3 text-xs text-warn">
+      <p className="bg-warn-soft p-3 text-xs text-warn">
         Anyone who has this link can receive the money, so only send it to the person it&apos;s for. If nobody
         claims it within 7 days, you can take it back.
       </p>

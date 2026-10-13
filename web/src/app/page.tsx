@@ -28,7 +28,7 @@ export default function Home() {
       <>
         <Header />
         <section className="py-6">
-          <h1 className="text-4xl font-semibold leading-tight tracking-tight">
+          <h1 className="display text-5xl">
             Send money home
             <br />
             <span className="text-accent">in seconds.</span>
@@ -106,37 +106,24 @@ function SignedIn() {
 
   return (
     <>
-      <section className="card flex items-end justify-between">
-        <div>
-          <p className="text-sm text-muted">{a.name ? `${a.name}'s balance` : "Your balance"}</p>
-          <p className="text-4xl font-semibold tabular-nums tracking-tight">
-            {balance == null ? "—" : formatUsd(balance)}
-          </p>
-        </div>
-        <Link href="/add" className="btn btn-secondary">
-          Add money
-        </Link>
-      </section>
-
       {state.kind === "done" ? (
-        <section className="card flex flex-col gap-4">
+        <section className="flex flex-col gap-4 pt-4">
           <div>
             <p className="text-sm text-muted">Ready to share</p>
-            <h2 className="text-2xl font-semibold">{state.amountLabel} is on its way</h2>
-            <p className="mt-1 text-sm text-muted">Send this link to the person you&apos;re paying.</p>
+            <h2 className="display mt-2 text-5xl">{state.amountLabel} is on its way</h2>
+            <p className="mt-3 text-muted">Send this link to the person you&apos;re paying.</p>
           </div>
           <ShareLink link={state.link} amountLabel={state.amountLabel} />
-          <button className="text-sm text-muted underline" onClick={() => setState({ kind: "idle" })}>
+          <button className="btn btn-secondary w-full" onClick={() => setState({ kind: "idle" })}>
             Send more money
           </button>
         </section>
       ) : (
-        <section className="card flex flex-col gap-4">
-          <h2 className="font-semibold">Send money</h2>
-          <label className="flex items-center gap-2 rounded-2xl border border-line px-4 py-3 focus-within:outline-2 focus-within:outline-accent">
-            <span className="text-3xl font-semibold text-muted">$</span>
+        <section className="flex flex-col gap-4 pt-2">
+          <label className="flex items-baseline gap-1 border-b border-line pb-2">
+            <span className="display text-6xl">$</span>
             <input
-              className="w-full bg-transparent text-3xl font-semibold tabular-nums outline-none"
+              className="display w-full min-w-0 bg-transparent text-6xl tabular-nums outline-none placeholder:text-white/40"
               inputMode="decimal"
               placeholder="0"
               value={amount}
@@ -145,18 +132,27 @@ function SignedIn() {
           </label>
           <div className="flex gap-2">
             {QUICK.map((q) => (
-              <button key={q} className="btn btn-secondary min-h-9 flex-1 text-sm" onClick={() => setAmount(q)}>
+              <button key={q} className="btn btn-secondary min-h-12 flex-1" onClick={() => setAmount(q)}>
                 ${q}
               </button>
             ))}
           </div>
           <FeeComparison amountUsd={amountUsd} />
+          <div className="flex items-end justify-between gap-3 border-t border-line pt-3">
+            <div>
+              <p className="text-sm text-muted">{a.name ? `${a.name}'s balance` : "Your balance"}</p>
+              <p className="text-xl font-semibold tabular-nums">{balance == null ? "—" : formatUsd(balance)}</p>
+            </div>
+            <Link href="/add" className="btn btn-secondary min-h-12">
+              Add money
+            </Link>
+          </div>
           {tooMuch && (
             <p className="text-sm text-danger">
               That&apos;s more than your balance. <Link href="/add" className="underline">Add money</Link>
             </p>
           )}
-          {state.kind === "error" && <p className="rounded-xl bg-warn-soft p-3 text-sm text-warn">{state.message}</p>}
+          {state.kind === "error" && <p className="bg-warn-soft p-3 text-sm text-warn">{state.message}</p>}
           <button
             className="btn btn-primary w-full"
             disabled={!units || tooMuch || state.kind === "sending" || !isConfigured}
@@ -179,7 +175,7 @@ function SignedIn() {
 function ConfigWarning() {
   if (isConfigured) return null;
   return (
-    <p className="rounded-xl bg-warn-soft p-3 text-sm text-warn">
+    <p className="bg-warn-soft p-3 text-sm text-warn">
       Not connected to a contract yet. Deploy <code>contracts/</code> and set <code>NEXT_PUBLIC_ESCROW_ADDRESS</code> and{" "}
       <code>NEXT_PUBLIC_TOKEN_ADDRESS</code> in <code>web/.env.local</code>.
     </p>
