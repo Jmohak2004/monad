@@ -1,0 +1,7 @@
+{
+  "chainId": 10143,
+  "token": "0xF1Fc08DcdCAa83953e54dd675F66c6C6EC6AfFd5",
+  "tokenIsMock": true,
+  "escrow": "0xA455e47354eb8Bb1Aa00edA192D40773892c2385",
+  "escrowDeployBlock": 70760893
+}
