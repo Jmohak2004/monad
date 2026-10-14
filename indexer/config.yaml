@@ -11,8 +11,8 @@ contracts:
       - event: "Refunded(address indexed claimKey, address indexed sender, uint256 amount)"
 chains:
   - id: 10143 # Monad Testnet (HyperSync: https://10143.hypersync.xyz)
-    # Set to the escrowDeployBlock in contracts/deployments/10143.json for a faster sync.
-    start_block: 0
+    # escrowDeployBlock from contracts/deployments/10143.json
+    start_block: 70760893
     contracts:
       - name: ClaimEscrow
-        address: "${ENVIO_ESCROW_ADDRESS}"
+        address: "${ENVIO_ESCROW_ADDRESS:-0xA455e47354eb8Bb1Aa00edA192D40773892c2385}"
