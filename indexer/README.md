@@ -1,8 +1,10 @@
 # Ghar indexer (Envio HyperIndex)
 
-Indexes `ClaimEscrow`'s `Created`, `Claimed`, and `Refunded` events into two
-entities, which back the app's Activity feed:
+Indexes `ClaimEscrow`'s `Created`, `Claimed`, and `Refunded` events and
+`PaymentRequest`'s `RequestPaid` and `RequestCancelled` events into entities that
+back the app's Activity feed:
 
+- `Request`: one per settled payment request (id = `${payee}-${requestId}`), with status `PAID` / `CANCELLED`, payee, payer, and amount. Open requests are off-chain until settled.
 - `Transfer`: one per claim link (id = claim-key address), with status `PENDING` / `CLAIMED` / `REFUNDED`, sender, recipient, and timestamps
 - `Account`: per-address totals for sent, received, and refunded amounts
 
@@ -14,7 +16,7 @@ Requires Node 22.15+ and Docker.
 
 ```bash
 npm install          # .npmrc sets legacy-peer-deps (avoids an npm 10 resolver bug)
-cp .env.example .env # set ENVIO_ESCROW_ADDRESS (+ ENVIO_API_TOKEN for HyperSync)
+cp .env.example .env # set ENVIO_ESCROW_ADDRESS, ENVIO_REQUESTS_ADDRESS (+ ENVIO_API_TOKEN for HyperSync)
 npm run codegen
 npm test             # simulated events, no Docker needed
 npm run dev          # Monad testnet via HyperSync; GraphQL at http://localhost:8080/v1/graphql

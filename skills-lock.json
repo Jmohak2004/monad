@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "skills": {
+    "animate": {
+      "source": "delphi-ai/animate-skill",
+      "sourceType": "github",
+      "skillPath": "SKILL.md",
+      "computedHash": "ffe5d0020ae97e7af2eeab79a3cdb2d13da004cc998dff6817b071308923b71f"
+    },
+    "brag": {
+      "source": "latent-spaces/brag",
+      "sourceType": "github",
+      "skillPath": "skills/brag/SKILL.md",
+      "computedHash": "3928ea1b54c4a83fc854060bd07ed26958e09f15c7e10538f93cf721e7f58740"
+    },
+    "hyperframes-animation": {
+      "source": "heygen-com/hyperframes",
+      "sourceType": "github",
+      "skillPath": "skills/hyperframes-animation/SKILL.md",
+      "computedHash": "7ae0b448a9bf71f5e3ebeea99369d573fed03d5939bec517649295fc9fcafe22"
+    },
+    "hyperframes-audio": {
+      "source": "heygen-com/hyperframes",
+      "sourceType": "github",
+      "skillPath": "skills/hyperframes-audio/SKILL.md",
+      "computedHash": "fed70bda20b7480227413f6876682d8ba4935aa069b5491642d55141d9508b24"
+    },
+    "hyperframes-cli": {
+      "source": "heygen-com/hyperframes",
+      "sourceType": "github",
+      "skillPath": "skills/hyperframes-cli/SKILL.md",
+      "computedHash": "668f3d1a9e56afdb0946a9e811c1bd6bf86022d21df40ba15718f033b97dafab"
+    },
+    "hyperframes-core": {
+      "source": "heygen-com/hyperframes",
+      "sourceType": "github",
+      "skillPath": "skills/hyperframes-core/SKILL.md",
+      "computedHash": "f50ee4785cb80fc4b6061ebd5576facf99fe01ee766544261ed917c60c805b21"
+    },
+    "hyperframes-creative": {
+      "source": "heygen-com/hyperframes",
+      "sourceType": "github",
+      "skillPath": "skills/hyperframes-creative/SKILL.md",
+      "computedHash": "58d5b2aba7ff2cb90c78c0863a17f139a95b8f27e643d79bd32c385e3fbfabf5"
+    },
+    "hyperframes-keyframes": {
+      "source": "heygen-com/hyperframes",
+      "sourceType": "github",
+      "skillPath": "skills/hyperframes-keyframes/SKILL.md",
+      "computedHash": "99f3b420941f6f91d49c36865fb21e46a562cd43a3b88a1f2297f79d55542c35"
+    }
+  }
+}

@@ -4,20 +4,19 @@ import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { useAccount } from "@/components/AccountProvider";
 import { AuthCard } from "@/components/AuthCard";
-import { FeeComparison } from "@/components/FeeComparison";
 import { Header } from "@/components/Header";
 import { History } from "@/components/History";
-import { ShareLink } from "@/components/ShareLink";
-import { isConfigured } from "@/lib/config";
-import { buildClaimLink, createClaimLink, formatUsd, getBalance, toUnits } from "@/lib/escrow";
-import { saveSentLink } from "@/lib/sentLinks";
+import { RequestCard } from "@/components/RequestCard";
+import { isConfigured, requestsConfigured } from "@/lib/config";
+import { formatUsd, getBalance, toUnits } from "@/lib/escrow";
+import { createRequest, saveRequest, type Invoice } from "@/lib/requests";
 
 const QUICK = ["50", "100", "200"];
 
-type SendState =
+type RequestState =
   | { kind: "idle" }
-  | { kind: "sending"; step: "approve" | "create" }
-  | { kind: "done"; link: string; amountLabel: string }
+  | { kind: "signing" }
+  | { kind: "done"; invoice: Invoice }
   | { kind: "error"; message: string };
 
 export default function Home() {
@@ -29,13 +28,13 @@ export default function Home() {
         <Header />
         <section className="py-6">
           <h1 className="display text-5xl">
-            Send money home
+            Ask family for money
             <br />
-            <span className="text-accent">in seconds.</span>
+            <span className="text-accent">with one QR.</span>
           </h1>
           <p className="mt-3 text-muted">
-            Share a link on WhatsApp. Your family taps it and the money is theirs: no app to install, no fees for
-            them.
+            Type how much you need and share a QR on WhatsApp. They scan it, pay in seconds, and it lands in your
+            balance.
           </p>
         </section>
         <AuthCard title="Get started" subtitle="Create your account in one tap." />
@@ -62,7 +61,7 @@ function SignedIn() {
   const a = account!;
   const [balance, setBalance] = useState<bigint | null>(null);
   const [amount, setAmount] = useState("");
-  const [state, setState] = useState<SendState>({ kind: "idle" });
+  const [state, setState] = useState<RequestState>({ kind: "idle" });
   const [refreshKey, setRefreshKey] = useState(0);
 
   const refreshBalance = useCallback(() => {
@@ -76,27 +75,18 @@ function SignedIn() {
     return () => clearInterval(t);
   }, [refreshBalance]);
 
-  const amountUsd = Number(amount) || 0;
   let units = 0n;
   try {
     units = amount ? toUnits(amount) : 0n;
   } catch {}
-  const tooMuch = balance != null && units > balance;
 
-  async function send() {
-    setState({ kind: "sending", step: "create" });
+  async function request() {
+    setState({ kind: "signing" });
     try {
-      const created = await createClaimLink(a.account, units, (step) => setState({ kind: "sending", step }));
-      saveSentLink(a.address, {
-        claimKey: created.claimKey,
-        claimPrivateKey: created.claimPrivateKey,
-        amount: created.amount.toString(),
-        expiry: created.expiry,
-        createdAt: Date.now(),
-      });
-      setState({ kind: "done", link: buildClaimLink(created.claimPrivateKey), amountLabel: formatUsd(created.amount) });
+      const invoice = await createRequest(a.account, units, a.name);
+      saveRequest(invoice);
+      setState({ kind: "done", invoice });
       setAmount("");
-      refreshBalance();
       setRefreshKey((k) => k + 1);
     } catch (e) {
       console.error(e);
@@ -107,19 +97,20 @@ function SignedIn() {
   return (
     <>
       {state.kind === "done" ? (
-        <section className="flex flex-col gap-4 pt-4">
+        <section className="rise flex flex-col gap-4 pt-4">
           <div>
             <p className="text-sm text-muted">Ready to share</p>
-            <h2 className="display mt-2 text-5xl">{state.amountLabel} is on its way</h2>
-            <p className="mt-3 text-muted">Send this link to the person you&apos;re paying.</p>
+            <h2 className="display mt-2 text-5xl">Request for {formatUsd(state.invoice.amount)}</h2>
+            <p className="mt-3 text-muted">Send this QR to the person paying you. It works once.</p>
           </div>
-          <ShareLink link={state.link} amountLabel={state.amountLabel} />
+          <RequestCard invoice={state.invoice} />
           <button className="btn btn-secondary w-full" onClick={() => setState({ kind: "idle" })}>
-            Send more money
+            Request more money
           </button>
         </section>
       ) : (
         <section className="flex flex-col gap-4 pt-2">
+          <p className="text-sm text-muted">How much do you need?</p>
           <label className="flex items-baseline gap-1 border-b border-line pb-2">
             <span className="display text-6xl">$</span>
             <input
@@ -137,7 +128,6 @@ function SignedIn() {
               </button>
             ))}
           </div>
-          <FeeComparison amountUsd={amountUsd} />
           <div className="flex items-end justify-between gap-3 border-t border-line pt-3">
             <div>
               <p className="text-sm text-muted">{a.name ? `${a.name}'s balance` : "Your balance"}</p>
@@ -147,22 +137,13 @@ function SignedIn() {
               Add money
             </Link>
           </div>
-          {tooMuch && (
-            <p className="text-sm text-danger">
-              That&apos;s more than your balance. <Link href="/add" className="underline">Add money</Link>
-            </p>
-          )}
           {state.kind === "error" && <p className="bg-warn-soft p-3 text-sm text-warn">{state.message}</p>}
           <button
             className="btn btn-primary w-full"
-            disabled={!units || tooMuch || state.kind === "sending" || !isConfigured}
-            onClick={send}
+            disabled={!units || state.kind === "signing" || !requestsConfigured}
+            onClick={request}
           >
-            {state.kind === "sending"
-              ? state.step === "approve"
-                ? "Authorizing…"
-                : "Creating link…"
-              : `Send${amountUsd ? ` $${amount}` : ""}`}
+            {state.kind === "signing" ? "Creating QR…" : `Request${units ? ` $${amount}` : ""}`}
           </button>
         </section>
       )}
@@ -173,12 +154,11 @@ function SignedIn() {
 }
 
 function ConfigWarning() {
-  if (isConfigured) return null;
+  if (isConfigured && requestsConfigured) return null;
   return (
     <p className="bg-warn-soft p-3 text-sm text-warn">
-      Not connected to a contract yet. Deploy <code>contracts/</code> and set <code>NEXT_PUBLIC_ESCROW_ADDRESS</code> and{" "}
-      <code>NEXT_PUBLIC_TOKEN_ADDRESS</code> in <code>web/.env.local</code>.
+      Not connected to a contract yet. Deploy <code>contracts/</code> and set <code>NEXT_PUBLIC_ESCROW_ADDRESS</code>,{" "}
+      <code>NEXT_PUBLIC_REQUESTS_ADDRESS</code>, and <code>NEXT_PUBLIC_TOKEN_ADDRESS</code> in <code>web/.env.local</code>.
     </p>
   );
 }
-

@@ -9,10 +9,16 @@ contracts:
       - event: "Created(address indexed claimKey, address indexed sender, uint256 amount, uint40 expiry)"
       - event: "Claimed(address indexed claimKey, address indexed recipient, address indexed sender, uint256 amount)"
       - event: "Refunded(address indexed claimKey, address indexed sender, uint256 amount)"
+  - name: PaymentRequest
+    events:
+      - event: "RequestPaid(bytes32 indexed id, address indexed payee, address indexed payer, uint256 amount)"
+      - event: "RequestCancelled(bytes32 indexed id, address indexed payee)"
 chains:
   - id: 10143 # Monad Testnet (HyperSync: https://10143.hypersync.xyz)
-    # Set to the escrowDeployBlock in contracts/deployments/10143.json for a faster sync.
-    start_block: 0
+    # escrowDeployBlock from contracts/deployments/10143.json
+    start_block: 70760893
     contracts:
       - name: ClaimEscrow
         address: "${ENVIO_ESCROW_ADDRESS}"
+      - name: PaymentRequest
+        address: "${ENVIO_REQUESTS_ADDRESS}"

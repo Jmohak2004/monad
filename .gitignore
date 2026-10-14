@@ -17,3 +17,8 @@ web/next-env.d.ts
 indexer/generated/
 indexer/build/
 contracts/deployments/31337.json
+# local agent skills
+.agents/
+# launch video / hyperframes output
+brag-output/
+*.mp4

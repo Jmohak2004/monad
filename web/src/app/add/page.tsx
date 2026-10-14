@@ -6,18 +6,26 @@ import { useAccount } from "@/components/AccountProvider";
 import { AuthCard } from "@/components/AuthCard";
 import { Header } from "@/components/Header";
 import { chain, tokenIsMock } from "@/lib/config";
+import { PAY_RETURN_KEY } from "@/lib/requests";
 
 export default function AddMoney() {
   const { account } = useAccount();
+  const [returnTo, setReturnTo] = useState<string | null>(null);
+  useEffect(() => setReturnTo(sessionStorage.getItem(PAY_RETURN_KEY)), []);
 
   return (
     <>
       <Header>
-        <Link href="/" className="text-sm text-muted underline">
+        <Link href={returnTo ?? "/"} className="text-sm text-muted underline">
           Back
         </Link>
       </Header>
       <h1 className="display text-4xl">Add money</h1>
+      {returnTo && (
+        <Link href={returnTo} className="btn btn-secondary w-full">
+          Done? Back to the request
+        </Link>
+      )}
       {!account ? (
         <AuthCard title="Sign in first" subtitle="Add money to your Ghar balance." />
       ) : (

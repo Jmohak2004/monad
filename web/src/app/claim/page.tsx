@@ -101,7 +101,7 @@ export default function ClaimPage() {
 
       {view.kind === "claimed" &&
         (view.mine ? (
-          <section className="card flex flex-col gap-3 py-8">
+          <section className="rise card flex flex-col gap-3 py-8">
             <div className="flex h-14 w-14 items-center justify-center bg-accent text-2xl text-accent-ink">
               ✓
             </div>

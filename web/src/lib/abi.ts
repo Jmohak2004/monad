@@ -86,6 +86,67 @@ export const escrowAbi = [
   ),
 ] as const;
 
+// Matches contracts/contracts/PaymentRequest.sol.
+export const requestsAbi = [
+  {
+    type: "function",
+    name: "pay",
+    stateMutability: "nonpayable",
+    inputs: [
+      { name: "payee", type: "address" },
+      { name: "amount", type: "uint256" },
+      { name: "id", type: "bytes32" },
+      { name: "expiry", type: "uint40" },
+      { name: "signature", type: "bytes" },
+    ],
+    outputs: [],
+  },
+  {
+    type: "function",
+    name: "cancel",
+    stateMutability: "nonpayable",
+    inputs: [{ name: "id", type: "bytes32" }],
+    outputs: [],
+  },
+  {
+    type: "function",
+    name: "status",
+    stateMutability: "view",
+    inputs: [
+      { name: "payee", type: "address" },
+      { name: "id", type: "bytes32" },
+    ],
+    outputs: [{ type: "uint8" }],
+  },
+  {
+    type: "event",
+    name: "RequestPaid",
+    inputs: [
+      { name: "id", type: "bytes32", indexed: true },
+      { name: "payee", type: "address", indexed: true },
+      { name: "payer", type: "address", indexed: true },
+      { name: "amount", type: "uint256", indexed: false },
+    ],
+  },
+  {
+    type: "event",
+    name: "RequestCancelled",
+    inputs: [
+      { name: "id", type: "bytes32", indexed: true },
+      { name: "payee", type: "address", indexed: true },
+    ],
+  },
+  ...["ZeroAmount", "ZeroAddress", "NotOpen", "Expired", "BadSignature"].map(
+    (name) => ({ type: "error", name, inputs: [] }) as const,
+  ),
+] as const;
+
+export enum RequestStatus {
+  Open = 0,
+  Paid = 1,
+  Cancelled = 2,
+}
+
 export const tokenAbi = [
   {
     type: "function",
