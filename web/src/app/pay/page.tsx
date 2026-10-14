@@ -44,13 +44,16 @@ export default function PayPage() {
       if (s === RequestStatus.Cancelled) return setView({ kind: "cancelled" });
       if (i.expiry < Date.now() / 1000) return setView({ kind: "expired" });
       setView({ kind: "open" });
-    } catch {
-      setView({ kind: "invalid" });
+    } catch (e) {
+      setView({
+        kind: "error",
+        message: e instanceof Error ? e.message.split("\n")[0] : "Couldn't open this request",
+      });
     }
   }, []);
 
   useEffect(() => {
-    const i = parsePayFragment(window.location.hash);
+    const i = parsePayFragment(window.location.search || window.location.hash);
     setInv(i);
     load(i);
   }, [load]);
@@ -148,7 +151,7 @@ export default function PayPage() {
                   <Link
                     href="/add"
                     className="btn btn-primary w-full"
-                    onClick={() => sessionStorage.setItem(PAY_RETURN_KEY, `/pay${window.location.hash}`)}
+                    onClick={() => sessionStorage.setItem(PAY_RETURN_KEY, `/pay${window.location.search || window.location.hash}`)}
                   >
                     Add money
                   </Link>

@@ -54,12 +54,13 @@ export function buildPayLink(inv: Invoice): string {
     s: inv.signature,
     n: inv.name,
   });
-  // Fragment, so the signed invoice never reaches a server log.
-  return `${window.location.origin}/pay#${q}`;
+  // Query string, not a hash. WhatsApp and share sheets drop everything after #,
+  // so the opened page had no invoice and showed "This QR doesn't work".
+  return `${window.location.origin}/pay?${q}`;
 }
 
 export function parsePayFragment(hash: string): Invoice | null {
-  const q = new URLSearchParams(hash.replace(/^#/, ""));
+  const q = new URLSearchParams(hash.replace(/^[?#]/, ""));
   const [p, a, i, e, s] = ["p", "a", "i", "e", "s"].map((k) => q.get(k) ?? "");
   if (!/^0x[0-9a-fA-F]{40}$/.test(p) || !/^[1-9][0-9]{0,30}$/.test(a) || !/^0x[0-9a-fA-F]{64}$/.test(i)) return null;
   if (!/^[0-9]{1,12}$/.test(e) || !/^0x[0-9a-fA-F]{130}$/.test(s)) return null;

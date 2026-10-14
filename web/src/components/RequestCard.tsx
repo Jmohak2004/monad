@@ -10,7 +10,7 @@ const message = (inv: Invoice, link: string) =>
 
 /** A shareable PNG, like a UPI app's QR card: name, amount, and the QR. */
 async function cardImage(inv: Invoice, link: string): Promise<File> {
-  const W = 720, H = 1000, Q = 520;
+  const W = 720, H = 1000;
   const canvas = document.createElement("canvas");
   canvas.width = W;
   canvas.height = H;
@@ -25,8 +25,9 @@ async function cardImage(inv: Invoice, link: string): Promise<File> {
   ctx.fillText(formatUsd(inv.amount), W / 2, 220);
 
   const qr = document.createElement("canvas");
-  await QRCode.toCanvas(qr, link, { width: Q, margin: 2, errorCorrectionLevel: "M" });
-  ctx.drawImage(qr, (W - Q) / 2, 280, Q, Q);
+  // Integer pixels per module. A fixed `width` makes qrcode use a fractional scale (7px and 8px modules).
+  await QRCode.toCanvas(qr, link, { scale: 6, margin: 2, errorCorrectionLevel: "M" });
+  ctx.drawImage(qr, (W - qr.width) / 2, 280);
 
   ctx.font = "400 28px system-ui, sans-serif";
   ctx.fillText("Scan with your phone camera to pay", W / 2, 880);
@@ -57,7 +58,7 @@ export function RequestCard({ invoice }: { invoice: Invoice }) {
   const [sharing, setSharing] = useState(false);
 
   useEffect(() => {
-    QRCode.toDataURL(buildPayLink(invoice), { width: 560, margin: 2, errorCorrectionLevel: "M" })
+    QRCode.toDataURL(buildPayLink(invoice), { scale: 6, margin: 2, errorCorrectionLevel: "M" })
       .then(setQr)
       .catch(() => setQr(null));
   }, [invoice]);
