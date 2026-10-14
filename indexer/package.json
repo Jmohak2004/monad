@@ -8,7 +8,7 @@
     "dev": "envio dev",
     "dev:local": "envio dev --config config.local.yaml",
     "start": "envio start",
-    "test": "ENVIO_ESCROW_ADDRESS=${ENVIO_ESCROW_ADDRESS:-0x0000000000000000000000000000000000000001} vitest run --test-timeout=20000",
+    "test": "ENVIO_ESCROW_ADDRESS=${ENVIO_ESCROW_ADDRESS:-0x0000000000000000000000000000000000000001} ENVIO_REQUESTS_ADDRESS=${ENVIO_REQUESTS_ADDRESS:-0x0000000000000000000000000000000000000002} vitest run --test-timeout=20000",
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {

@@ -82,3 +82,37 @@ describe("ClaimEscrow", () => {
     t.expect((await indexer.Account.getOrThrow(sender!)).refundedTotal).toBe(5_000_000n);
   });
 });
+
+describe("PaymentRequest", () => {
+  it("records a paid request for both sides and a cancelled one", async (t) => {
+    const indexer = createTestIndexer();
+    const [payee, payer] = Addresses.mockAddresses.map((a) => a.toLowerCase() as `0x${string}`);
+    const paidId = `0x${"11".repeat(32)}` as const;
+    const cancelledId = `0x${"22".repeat(32)}` as const;
+
+    await indexer.process({
+      chains: {
+        [CHAIN]: {
+          simulate: [
+            {
+              contract: "PaymentRequest",
+              event: "RequestPaid",
+              params: { id: paidId, payee: payee!, payer: payer!, amount: 200_000_000n },
+            },
+            { contract: "PaymentRequest", event: "RequestCancelled", params: { id: cancelledId, payee: payee! } },
+          ],
+        },
+      },
+    });
+
+    const paid = await indexer.Request.getOrThrow(`${payee}-${paidId}`);
+    t.expect({ status: paid.status, payer: paid.payer, amount: paid.amount }).toEqual({
+      status: "PAID",
+      payer,
+      amount: 200_000_000n,
+    });
+    t.expect((await indexer.Request.getOrThrow(`${payee}-${cancelledId}`)).status).toBe("CANCELLED");
+    t.expect((await indexer.Account.getOrThrow(payee!)).receivedTotal).toBe(200_000_000n);
+    t.expect((await indexer.Account.getOrThrow(payer!)).sentTotal).toBe(200_000_000n);
+  });
+});

@@ -50,12 +50,8 @@ Pilot corridor: **UAE → India** (AED → INR).
 - Cite sources in the UI footer.
 
 ## Demo script (2 minutes)
-1. (10s) The problem: fees average several percent, and transfers take days.
-2. (20s) Sender logs in with a passkey and sees the fee comparison.
-3. (30s) Sender funds from another chain via Aurora, then sends $100.
-4. (30s) The link opens on a second phone, the recipient creates a passkey, and the money arrives.
-5. (20s) The history feed updates live on both sides.
-6. (10s) "No app, no seed phrase, no gas. Just a link."
+
+The shootable script — voiceover, on-screen action, and timing — is in [demo-script.md](demo-script.md).
 
 ## Risks and fallbacks
 

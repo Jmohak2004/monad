@@ -12,6 +12,9 @@
   --warn: #ffe7a3;
   --warn-soft: rgba(0, 0, 0, 0.16);
   --danger: #ffd0c8;
+  --ease-out-quint: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out-cubic: cubic-bezier(0.645, 0.045, 0.355, 1);
+  --ease-out-cubic: cubic-bezier(0.33, 1, 0.68, 1);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -73,10 +76,12 @@ body {
   border-radius: 0;
   font-stretch: 125%;
   font-weight: 700;
-  transition: opacity 0.15s, transform 0.05s;
+  transition:
+    opacity 150ms linear,
+    transform 100ms var(--ease-out-quint);
 }
 .btn:active {
-  transform: scale(0.98);
+  transform: scale(0.97);
 }
 .btn:disabled {
   opacity: 0.5;
@@ -116,4 +121,37 @@ body {
 select.input option {
   color: #1436c8;
   background: #f4f6ff;
+}
+
+.rise {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 280ms var(--ease-out-quint),
+    transform 280ms var(--ease-out-quint);
+
+  @starting-style {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rise {
+    transform: none;
+    transition: opacity 200ms ease-out;
+
+    @starting-style {
+      opacity: 0;
+      transform: none;
+    }
+  }
+
+  .btn {
+    transition: opacity 150ms linear;
+  }
+
+  .btn:active {
+    transform: none;
+  }
 }

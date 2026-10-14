@@ -35,7 +35,7 @@ export async function getBalance(owner: Address): Promise<bigint> {
 
 // Monad charges for the declared gas limit, not gas used, so we estimate and add a
 // small buffer instead of letting a wallet pad it.
-async function write(
+export async function write(
   account: LocalAccount,
   params: Parameters<typeof publicClient.simulateContract>[0],
 ): Promise<Hex> {

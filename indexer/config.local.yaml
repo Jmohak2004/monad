@@ -9,6 +9,10 @@ contracts:
       - event: "Created(address indexed claimKey, address indexed sender, uint256 amount, uint40 expiry)"
       - event: "Claimed(address indexed claimKey, address indexed recipient, address indexed sender, uint256 amount)"
       - event: "Refunded(address indexed claimKey, address indexed sender, uint256 amount)"
+  - name: PaymentRequest
+    events:
+      - event: "RequestPaid(bytes32 indexed id, address indexed payee, address indexed payer, uint256 amount)"
+      - event: "RequestCancelled(bytes32 indexed id, address indexed payee)"
 chains:
   - id: 31337
     start_block: 0
@@ -18,3 +22,5 @@ chains:
     contracts:
       - name: ClaimEscrow
         address: "${ENVIO_ESCROW_ADDRESS:-0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512}"
+      - name: PaymentRequest
+        address: "${ENVIO_REQUESTS_ADDRESS:-0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0}"

@@ -20,6 +20,25 @@ type Transfer {
   settledTx: String
 }
 
+enum RequestStatus {
+  PAID
+  CANCELLED
+}
+
+# One settled payment request (QR). Open requests are off-chain until paid or
+# cancelled. id is `${payee}-${requestId}`, since request ids are per payee.
+type Request {
+  id: ID!
+  requestId: String!
+  payee: String! @index
+  # Set once paid.
+  payer: String @index
+  amount: BigInt
+  status: RequestStatus!
+  settledAt: BigInt! @index
+  settledTx: String!
+}
+
 # Per-address totals, for the profile/summary view.
 type Account {
   id: ID!

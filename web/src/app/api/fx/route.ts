@@ -17,6 +17,7 @@ export async function GET(req: Request) {
       base: "USD",
       to,
       rate,
+      rates: data.rates,
       updatedAt: data.time_last_update_utc,
       source: "exchangerate-api.com",
     });
