@@ -1,5 +1,6 @@
 # yaml-language-server: $schema=./node_modules/envio/evm.schema.json
 name: ghar-indexer
+# Hosted from the indexer directory.
 description: Ghar claim-link transfers (ClaimEscrow) on Monad
 # Lowercase addresses so the app can query by `owner.toLowerCase()`.
 address_format: lowercase
